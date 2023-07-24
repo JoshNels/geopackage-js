@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -28,9 +28,3 @@ jobs:
       env:
         JOB_CONTEXT: ${{ toJson(matrix) }}
       run: echo "$JOB_CONTEXT"
-    - name: Coveralls
-      if: matrix.node-version == '16.x'
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./docs/coverage/lcov.info
